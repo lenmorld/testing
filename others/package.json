@@ -1,0 +1,30 @@
+{
+  "name": "testing",
+  "version": "1.0.0",
+  "description": "Test launcher: Karma",
+  "main": "index.js",
+  "scripts": {
+    "test": "karma start karma.conf.js --no-single-run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lenmorld/testing.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lenmorld/testing/issues"
+  },
+  "homepage": "https://github.com/lenmorld/testing#readme",
+  "devDependencies": {
+    "jasmine-core": "^3.4.0",
+    "karma": "^4.0.1",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-firefox-launcher": "^1.1.0",
+    "karma-jasmine": "^2.0.1"
+  },
+  "dependencies": {
+    "mocha": "^6.1.3"
+  }
+}
