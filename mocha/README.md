@@ -23,6 +23,10 @@ spy:
 - tells us how many times function has been called, the arguments passed when it was called, etc
 - useful for callbacks
 
+sinon.spy() arguments
+
+![](screens/2019-04-14-14-49-57.png)
+
 stub:
 - replaces functions
 - more control by returning whatever we want or have function work in a way that suites our test scenario
@@ -30,12 +34,3 @@ stub:
 mock:
 - fake functions 
 - pre-programmed behavior and expectation
-
-
-
-
-====
-
-sinon.spy() arguments
-
-![](screens/2019-04-14-14-49-57.png)
