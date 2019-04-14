@@ -1,0 +1,1 @@
+// SinonJS provides test spies, stubs, mocks
