@@ -20,7 +20,8 @@ https://devhints.io/chai
 
 spy:
 - tracks fake/existing functions exec
-- tells us how many times function has been called, etc
+- tells us how many times function has been called, the arguments passed when it was called, etc
+- useful for callbacks
 
 stub:
 - replaces functions
