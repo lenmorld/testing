@@ -6,6 +6,11 @@ class User {
 	printInfo() {
 		return this.name;
 	}
+
+	isLoggedIn(user){
+		// best auth ever!
+		return user.name === "Lenny";
+	}
 }
 
 const users = [];
@@ -26,5 +31,14 @@ module.exports = {
 	addUser: (name) => {
 		const u = new User(name);
 		users.push(u);
+
+		return u;
+	},
+
+	secret: (req, res) => {
+		if (req.user.isLoggedIn()) {
+			return res.send("Secret is 1234");
+		}
+		res.send("Access denied. Log in required");
 	}
 }

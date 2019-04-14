@@ -20,6 +20,7 @@ https://devhints.io/chai
 
 spy:
 - tracks fake/existing functions exec
+- functions run as-is (we're just "spying" on them)
 - tells us how many times function has been called, the arguments passed when it was called, etc
 - useful for callbacks
 
@@ -29,7 +30,11 @@ sinon.spy() arguments
 
 stub:
 - replaces functions
+- we replace actual function
 - more control by returning whatever we want or have function work in a way that suites our test scenario
+- useful for: 
+	- slow, difficult testse e.g. **HTTP, DB calls**
+	- triggering diff. outcomes for a piece of code, e.g. what happens if it passes/or if an error is thrown
 
 mock:
 - fake functions 

@@ -45,3 +45,36 @@ describe('User', () => {
 		})
 	})
 })
+
+
+// 3. use STUB
+describe('secret', () => {
+	it('should send secret when user logged in', () => {
+
+		const user = app.addUser("Lenny DaLobster");
+
+		// stub isLoggedIn function, return TRUE always
+		const isLoggedInStub = sinon.stub(user, "isLoggedIn").returns(true);
+
+		// mock req, and spy on res
+		let req = {
+			user: user
+		}
+
+		// 😎
+		expect(req.user.isLoggedIn()).to.be.true;
+
+		let res = {
+			send: sinon.spy()
+		}
+
+		app.secret(req, res);
+
+		expect(res.send.calledOnce).to.be.true;
+		expect(res.send.firstCall.args[0]).to.equal("Secret is 1234");
+
+		// assert stub is logged in at least once
+		console.log(isLoggedInStub.callCount);
+		expect(isLoggedInStub.callCount).to.be.greaterThan(0);
+	})
+})
