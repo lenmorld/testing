@@ -1,6 +1,23 @@
-Level 1:
+Test launcher:
+- Karma
+- Jasmine
+- Jest
+- Cypress
 
-Jasmine/Mocha : test frameworks
+Test runners:
+
+- Mocha
+- Jasmine
+- Jest
+
+Assertion library:
+- Node.js built-in assert library
+- Chai
+
+Test frameworks:
+
+- Jasmine
+- Jest
 
 
 Jasmine
