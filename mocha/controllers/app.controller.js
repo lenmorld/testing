@@ -40,5 +40,11 @@ module.exports = {
 			return res.send("Secret is 1234");
 		}
 		res.send("Access denied. Log in required");
+	},
+
+	doAsync: (bool, callback) => {
+		setTimeout(() => {
+			callback(bool ? "Resolve!" : "Reject!");
+		}, 1000);
 	}
 }

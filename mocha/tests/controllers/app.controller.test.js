@@ -6,6 +6,7 @@ const sinon = require('sinon');
 // const mocha = require('mocha');
 // const describe = mocha.describe;
 // const it = mocha.it;
+// const done = mocha.done;
 
 // import controller to test
 const app = require('../../controllers/app.controller');
@@ -136,5 +137,26 @@ describe('secret', () => {
 		
 		// verify mock works as expected
 		mock.verify();
+	})
+})
+
+
+// 5. Async test
+// describe.only('AsyncTest', () => {		// only run this test
+describe('AsyncTest', () => {
+	it('should return Resolve! if true is passed', (done) => {		// DONT FORGET TO PASS done arg here
+		app.doAsync(true, function (returnVal) {
+			expect(returnVal).to.equal('Resolve!');
+			done();
+		});
+	})
+
+
+	// THIS TEST SHOULD FAIL!
+	it('should fail', (done) => {
+		app.doAsync(false, function (returnVal) {
+			expect(returnVal).to.equal('BLAAAH!');
+			done();
+		});
 	})
 })

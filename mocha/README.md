@@ -41,3 +41,22 @@ mock:
 - pre-programmed behavior and expectation
 - we can speficy how we want something to work
 and use `mock.verify()` to make sure it works
+
+=== testing async functions
+
+```
+	// THIS TEST SHOULD FAIL!
+	it('should fail', () => {
+		app.doAsync(true, (returnVal) => {
+			expect(returnVal).to.equal('BLAAAH!')
+		})
+	})
+```
+
+why not failing?
+- tests finish executing before function completes
+since the async call didn't get a chance to throw exception
+
+how to fix?
+- `done()` alerts Mocha that we have to wait for `done()`
+to be called
