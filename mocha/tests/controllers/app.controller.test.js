@@ -54,7 +54,7 @@ describe('secret', () => {
 		const user = app.addUser("Lenny DaLobster");
 
 		// stub isLoggedIn function, return TRUE always
-		const isLoggedInStub = sinon.stub(user, "isLoggedIn").returns(true);
+		const isLoggedInStub = sinon.stub(user, "isLoggedIn").returns(true); // <- TRUE
 
 		// mock req, and spy on res
 		let req = {
@@ -74,6 +74,32 @@ describe('secret', () => {
 		expect(res.send.firstCall.args[0]).to.equal("Secret is 1234");
 
 		// assert stub is logged in at least once
+		console.log(isLoggedInStub.callCount);
+		expect(isLoggedInStub.callCount).to.be.greaterThan(0);
+	})
+
+	it('should send access-denied message when user not logged in', () => {
+
+		const user = app.addUser("Lenny DaLobster");
+
+		// stub isLoggedIn function, return TRUE always
+		const isLoggedInStub = sinon.stub(user, "isLoggedIn").returns(false); // <- FALSE
+
+		// mock req, and spy on res
+		let req = {
+			user: user
+		}
+
+		let res = {
+			send: sinon.spy()
+		}
+
+		app.secret(req, res);
+
+		expect(res.send.calledOnce).to.be.true;
+		expect(res.send.firstCall.args[0]).to.equal("Access denied. Log in required");
+
+		// assert stub is called at least once
 		console.log(isLoggedInStub.callCount);
 		expect(isLoggedInStub.callCount).to.be.greaterThan(0);
 	})
