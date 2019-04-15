@@ -33,9 +33,11 @@ stub:
 - we replace actual function
 - more control by returning whatever we want or have function work in a way that suites our test scenario
 - useful for: 
-	- slow, difficult testse e.g. **HTTP, DB calls**
+	- slow, difficult tests e.g. **HTTP, DB calls**
 	- triggering diff. outcomes for a piece of code, e.g. what happens if it passes/or if an error is thrown
 
 mock:
 - fake functions 
 - pre-programmed behavior and expectation
+- we can speficy how we want something to work
+and use `mock.verify()` to make sure it works

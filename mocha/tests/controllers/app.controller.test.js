@@ -104,3 +104,37 @@ describe('secret', () => {
 		expect(isLoggedInStub.callCount).to.be.greaterThan(0);
 	})
 })
+
+
+// 4. use MOCK
+describe('secret', () => {
+	it('should send secret when user logged in', () => {
+
+		const user = app.addUser("Lenny DaLobster");
+
+		// stub isLoggedIn function, return TRUE always
+		const isLoggedInStub = sinon.stub(user, "isLoggedIn").returns(true); // <- TRUE
+
+		// mock req, and spy on res
+		let req = {
+			user: user
+		}
+
+		let res = {
+			send: function() {}		// NOTE here that we are using empty function, instead of a spy
+		}
+
+		// mock res
+		const mock = sinon.mock(res);
+
+		// build how we expect it to work
+		mock.expects('send').once().withExactArgs("Secret is 1234");
+
+		app.secret(req, res);
+
+		expect(isLoggedInStub.calledOnce).to.be.true;
+		
+		// verify mock works as expected
+		mock.verify();
+	})
+})
