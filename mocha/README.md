@@ -60,3 +60,8 @@ since the async call didn't get a chance to throw exception
 how to fix?
 - `done()` alerts Mocha that we have to wait for `done()`
 to be called
+- make sure to pass  `done` to it
+
+=== async test with promises
+
+`npm i -D chai-as-promised`

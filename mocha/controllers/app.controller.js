@@ -44,7 +44,15 @@ module.exports = {
 
 	doAsync: (bool, callback) => {
 		setTimeout(() => {
-			callback(bool ? "Resolve!" : "Reject!");
+			callback(bool ? "Yes!" : "No!");
 		}, 1000);
-	}
+	},
+
+	doAsyncPromise: (bool) => {
+		return new Promise((resolve, reject) => {
+			setTimeout(() => {
+				resolve(bool ? "Yes!" : "No!");
+			}, 1000);
+		})
+	},
 }

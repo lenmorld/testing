@@ -2,6 +2,8 @@ const chai = require('chai');
 const expect = chai.expect;
 const sinon = require('sinon');
 
+chai.use(require("chai-as-promised"));
+
 // needed for VSCode debugging
 // const mocha = require('mocha');
 // const describe = mocha.describe;
@@ -142,15 +144,21 @@ describe('secret', () => {
 
 
 // 5. Async test
-// describe.only('AsyncTest', () => {		// only run this test
-describe('AsyncTest', () => {
-	it('should return Resolve! if true is passed', (done) => {		// DONT FORGET TO PASS done arg here
+// describe.only('doAsync', () => {		// only run this test
+describe('doAsync', () => {
+	it('should return Yes! if true is passed', (done) => {		// DONT FORGET TO PASS done arg here
 		app.doAsync(true, function (returnVal) {
-			expect(returnVal).to.equal('Resolve!');
+			expect(returnVal).to.equal('Yes!');
 			done();
 		});
 	})
 
+	it('should return No! if false is passed', (done) => {		// DONT FORGET TO PASS done arg here
+		app.doAsync(false, function (returnVal) {
+			expect(returnVal).to.equal('No!');
+			done();
+		});
+	})
 
 	// THIS TEST SHOULD FAIL!
 	it('should fail', (done) => {
@@ -159,4 +167,24 @@ describe('AsyncTest', () => {
 			done();
 		});
 	})
+})
+
+
+// 6. Async promises test
+// describe.only('AsyncTest', () => {		// only run this test
+describe('doAsyncPromise', () => {
+	it('should resolve Yes! if true is passed', () => {
+		return expect(app.doAsyncPromise(true)).to.eventually.equal("Yes!")
+	});
+
+	it('should resolve No! if false is passed', () => {
+		return expect(app.doAsyncPromise(false)).to.eventually.equal("No!")
+	});
+
+	// THIS TEST SHOULD FAIL
+	it('should fail', () => {
+		return expect(app.doAsyncPromise(true)).to.eventually.equal("BLAAH!")
+	});
+
+
 })
